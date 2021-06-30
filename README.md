@@ -1,4 +1,4 @@
-# Spring
+# Spring [![wakatime](https://wakatime.com/badge/github/josue-lubaki/SpringBoot-Pratices.svg)](https://wakatime.com/badge/github/josue-lubaki/SpringBoot-Pratices)
  Pratique sur les principes de base de Spring et Spring Boot
 
 Démarrage project : https://start.spring.io/
