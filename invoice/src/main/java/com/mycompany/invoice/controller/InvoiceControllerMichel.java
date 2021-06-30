@@ -8,6 +8,16 @@ import java.util.Scanner;
 public class InvoiceControllerMichel implements InvoiceControllerInterface {
 
     private InvoiceServiceInterface invoiceService;
+
+    public InvoiceServiceInterface getInvoiceService() {
+        return invoiceService;
+    }
+
+    public void setInvoiceService(InvoiceServiceInterface invoiceService) {
+        this.invoiceService = invoiceService;
+    }
+
+    @Override
     public void createInvoice(){
 
         Scanner scan = new Scanner(System.in);
