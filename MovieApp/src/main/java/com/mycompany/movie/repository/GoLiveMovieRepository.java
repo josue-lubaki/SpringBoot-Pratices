@@ -5,7 +5,7 @@ import com.mycompany.movie.entity.Movie;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class GoLiveMovieRepository {
+public class GoLiveMovieRepository implements MovieRepositoryInterface {
 
     public void addMovie(Movie movie){
         FileWriter writer;

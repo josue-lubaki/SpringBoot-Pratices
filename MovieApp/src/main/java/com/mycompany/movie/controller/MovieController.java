@@ -1,12 +1,12 @@
 package com.mycompany.movie.controller;
 
 import com.mycompany.movie.entity.Movie;
-import com.mycompany.movie.service.MovieService;
+import com.mycompany.movie.service.MovieServiceInterface;
 
 import java.util.Scanner;
 
 public class MovieController {
-    private final MovieService movieService = new MovieService();
+    private MovieServiceInterface movieService;
 
     public void addUsingConsole(){
         System.out.println( "Entrer le Titre et le genre du film" );
