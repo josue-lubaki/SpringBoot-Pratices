@@ -1,12 +1,15 @@
 package com.mycompany.invoice;
 
-import com.mycompany.invoice.controller.InvoiceController;
-import com.mycompany.invoice.controller.InvoiceControllerChambouleToutMagasin2;
-import com.mycompany.invoice.controller.InvoiceControllerMichel;
-import com.mycompany.invoice.repository.InvoiceRepository;
-import com.mycompany.invoice.repository.InvoiceRepositoryMichel;
-import com.mycompany.invoice.service.InvoiceService;
-import com.mycompany.invoice.service.InvoiceServiceMichel;
+import com.mycompany.invoice.controller.InvoiceControllerInterface;
+import com.mycompany.invoice.controller.InvoiceControllerKeyboard;
+import com.mycompany.invoice.controller.InvoiceControllerDouchette;
+import com.mycompany.invoice.controller.InvoiceControllerWeb;
+import com.mycompany.invoice.repository.InvoiceRepositoryInterface;
+import com.mycompany.invoice.repository.InvoiceRepositoryMemory;
+import com.mycompany.invoice.repository.InvoiceRepositoryDatabase;
+import com.mycompany.invoice.service.InvoiceServiceInterface;
+import com.mycompany.invoice.service.InvoiceServiceNumber;
+import com.mycompany.invoice.service.InvoiceServicePrefix;
 
 import java.util.Scanner;
 
@@ -18,43 +21,66 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println("Dans quelle configuration êtes-vous ?");
         Scanner scan = new Scanner(System.in);
-        int configuration = scan.nextInt();
-
-        if(configuration == 1) {
-            InvoiceController invoiceController = new InvoiceController();
-            InvoiceService invoiceService = new InvoiceService();
-            invoiceController.setInvoiceService(invoiceService);
-            InvoiceRepository invoiceRepository = new InvoiceRepository();
-            invoiceService.setInvoiceRepository(invoiceRepository);
-            invoiceController.createInvoice();
-        }
-        else if(configuration == 2){
-            InvoiceControllerMichel invoiceController = new InvoiceControllerMichel();
-            InvoiceServiceMichel invoiceService = new InvoiceServiceMichel();
-            invoiceController.setInvoiceService(invoiceService);
-            InvoiceRepositoryMichel invoiceRepository = new InvoiceRepositoryMichel();
-            invoiceService.setInvoiceRepository(invoiceRepository);
-            invoiceController.createInvoice();
-        }
-        else if(configuration == 3){
-            InvoiceControllerMichel invoiceController = new InvoiceControllerMichel(); // controller avec formulaire web
-            InvoiceService invoiceService = new InvoiceService();
-            invoiceController.setInvoiceService(invoiceService);
-            InvoiceRepositoryMichel invoiceRepository = new InvoiceRepositoryMichel();
-            invoiceService.setInvoiceRepository(invoiceRepository);
-            invoiceController.createInvoice();
-        }
-        else if(configuration == 4){
-            InvoiceControllerChambouleToutMagasin2 invoiceController = new InvoiceControllerChambouleToutMagasin2(); // controller avec scanner product
-            InvoiceService invoiceService = new InvoiceService();
-            invoiceController.setInvoiceService(invoiceService);
-            InvoiceRepositoryMichel invoiceRepository = new InvoiceRepositoryMichel();
-            invoiceService.setInvoiceRepository(invoiceRepository);
-            invoiceController.createInvoice();
-        }
+        System.out.println("Quel est le type de controller ? (Keyboard, web, Douchette)");
+        String controllerType = scan.nextLine();
+        System.out.println("Quel est le type de service ? (number, prefix)");
+        String serviceType = scan.nextLine();
+        System.out.println("Quel est le type de repository ? (memory, Database)");
+        String repositoryType = scan.nextLine();
 
 
+
+        InvoiceControllerInterface invoiceController = null;
+        switch (controllerType.toLowerCase()){
+            case "keyboard" :
+                invoiceController = new InvoiceControllerKeyboard();
+                break;
+            case "web":
+                invoiceController = new InvoiceControllerWeb();
+                break;
+            case "douchette":
+                invoiceController = new InvoiceControllerDouchette();
+                break;
+        }
+
+        InvoiceServiceInterface invoiceService = null;
+
+        switch(serviceType.toLowerCase()){
+            case "number":
+                invoiceService = new InvoiceServiceNumber();
+                break;
+            case "prefix":
+                invoiceService = new InvoiceServicePrefix();
+                break;
+        }
+        InvoiceRepositoryInterface invoiceRepository = null;
+
+        switch(repositoryType.toLowerCase()){
+            case "memory":
+                invoiceRepository = new InvoiceRepositoryMemory();
+                break;
+            case "database":
+                invoiceRepository = new InvoiceRepositoryDatabase();
+                break;
+        }
+
+        invoiceController.setInvoiceService(invoiceService);
+        invoiceService.setInvoiceRepository(invoiceRepository);
+        invoiceController.createInvoice();
     }
 }
+     /* System.out.println("Quel est la Classe de controller ? ");
+        String controllerClass = scan.nextLine();
+        System.out.println("Quel est la Classe de service ?");
+        String serviceClass = scan.nextLine();
+        System.out.println("Quel est la Classe de repository ?");
+        String repositoryClass = scan.nextLine();*/
+
+ /*  try {
+            invoiceController = (InvoiceControllerInterface) Class.forName(controllerClass).getDeclaredConstructor().newInstance();
+            invoiceService = (InvoiceServiceInterface) Class.forName(serviceClass).getDeclaredConstructor().newInstance();
+            invoiceRepository = (InvoiceRepositoryInterface) Class.forName(repositoryClass).getDeclaredConstructor().newInstance();
+        }catch(Exception e){
+            e.printStackTrace();
+        }*/

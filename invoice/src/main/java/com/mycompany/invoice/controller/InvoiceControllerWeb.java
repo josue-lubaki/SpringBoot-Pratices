@@ -5,7 +5,7 @@ import com.mycompany.invoice.service.InvoiceServiceInterface;
 
 import java.util.Scanner;
 
-public class InvoiceControllerMichel implements InvoiceControllerInterface {
+public class InvoiceControllerWeb implements InvoiceControllerInterface {
 
     private InvoiceServiceInterface invoiceService;
 

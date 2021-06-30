@@ -13,3 +13,6 @@ Demander à Maven de rebuilder l'appplication
     - controller
     - Service
     - Contrat
+
+* L'inversion de contrôle est le fait d'avoir une classe Centralisée qui se charge d'instancier et de mettre en relation les differents composants du logiciel
+grâce à l'injection de dépendance.

@@ -3,7 +3,7 @@ package com.mycompany.invoice.controller;
 import com.mycompany.invoice.entity.Invoice;
 import com.mycompany.invoice.service.InvoiceServiceInterface;
 
-public class InvoiceControllerChambouleToutMagasin2 implements InvoiceControllerInterface{
+public class InvoiceControllerDouchette implements InvoiceControllerInterface{
     private InvoiceServiceInterface invoiceService;
 
     public InvoiceServiceInterface getInvoiceService() {
