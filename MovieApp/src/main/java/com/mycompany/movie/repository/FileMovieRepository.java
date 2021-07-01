@@ -1,6 +1,7 @@
 package com.mycompany.movie.repository;
 
 import com.mycompany.movie.entity.Movie;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -8,6 +9,7 @@ import java.io.IOException;
 
 public class FileMovieRepository implements MovieRepositoryInterface {
 
+    @Value("${movieFile.path}")
     private File file;
 
     public void addMovie(Movie movie){

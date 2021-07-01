@@ -6,3 +6,4 @@ Fast and Furouis 9;Action
 Superman;Fantastique
 Spider-Man;Fantastique
 Rambo;Action
+Nun;Horreur

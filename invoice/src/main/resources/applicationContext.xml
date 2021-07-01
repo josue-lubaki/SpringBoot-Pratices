@@ -7,10 +7,10 @@
     http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:annotation-config/>
+    <context:property-placeholder location="application.properties"/>
 
     <bean class="com.mycompany.invoice.service.InvoiceServicePrefix">
-        <property name="lastNumber" value="112"/>
-        <property name="prefix" value="INV_"/>
+
     </bean>
 
     <bean class="com.mycompany.invoice.controller.InvoiceControllerWeb"/>

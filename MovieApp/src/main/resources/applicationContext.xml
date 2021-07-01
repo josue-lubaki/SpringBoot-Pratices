@@ -8,15 +8,12 @@
         https://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:annotation-config/>
+    <context:property-placeholder location="classpath:application.properties"/>
 
-    <bean class="com.mycompany.movie.repository.FileMovieRepository">
-        <property name="file" value="movies.csv"/>
-    </bean>
+    <bean class="com.mycompany.movie.repository.FileMovieRepository"/>
 
-    <bean class="com.mycompany.movie.controller.MovieController">
-    </bean>
+    <bean class="com.mycompany.movie.controller.MovieController"/>
 
-    <bean class="com.mycompany.movie.service.DefaultMovieService">
-    </bean>
+    <bean class="com.mycompany.movie.service.DefaultMovieService"/>
 
 </beans>
