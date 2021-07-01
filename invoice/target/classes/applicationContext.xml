@@ -6,17 +6,6 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:annotation-config/>
-    <context:property-placeholder location="application.properties"/>
-    <context:component-scan base-package="com.mycompany.invoice.controller.web"/>
-    <context:component-scan base-package="com.mycompany.invoice.repository.database"/>
-    <context:component-scan base-package="com.mycompany.invoice.service.prefix"/>
-
-    <!--bean class="com.mycompany.invoice.service.prefix.InvoiceServicePrefix"/>
-
-    <bean class="com.mycompany.invoice.controller.web.InvoiceControllerWeb"/>
-
-    <bean class="com.mycompany.invoice.repository.database.InvoiceRepositoryDatabase"/-->
-    
+    <context:property-placeholder location="classpath:application.properties"/>
 
 </beans>
