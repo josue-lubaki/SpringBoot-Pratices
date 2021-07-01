@@ -14,7 +14,7 @@ public class App
     {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         // Utilisation de l'ID du bean
-        MovieController movieController = (MovieController) context.getBean("movieControllerRef");
+        MovieController movieController = context.getBean(MovieController.class);
         movieController.addUsingConsole();
     }
 }

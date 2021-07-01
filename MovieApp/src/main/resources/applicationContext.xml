@@ -3,18 +3,19 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd"
+       default-autowire="byType">
 
-    <bean id="movieRepositoryRef" class="com.mycompany.movie.repository.FileMovieRepository">
+    <bean class="com.mycompany.movie.repository.FileMovieRepository">
         <property name="file" value="movies.csv"/>
     </bean>
 
-    <bean id="movieControllerRef" class="com.mycompany.movie.controller.MovieController">
-        <property name="movieService" ref="movieServiceRef"/>
+    <bean class="com.mycompany.movie.controller.MovieController">
     </bean>
 
-    <bean id="movieServiceRef" class="com.mycompany.movie.service.DefaultMovieService">
-        <property name="movieRepository" ref="movieRepositoryRef"/>
+    <bean class="com.mycompany.movie.service.DefaultMovieService">
     </bean>
 
 </beans>
