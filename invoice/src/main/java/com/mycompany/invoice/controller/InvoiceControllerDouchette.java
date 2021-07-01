@@ -2,8 +2,11 @@ package com.mycompany.invoice.controller;
 
 import com.mycompany.invoice.entity.Invoice;
 import com.mycompany.invoice.service.InvoiceServiceInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class InvoiceControllerDouchette implements InvoiceControllerInterface{
+
+    @Autowired
     private InvoiceServiceInterface invoiceService;
 
     public InvoiceServiceInterface getInvoiceService() {
