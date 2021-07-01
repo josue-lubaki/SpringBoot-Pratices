@@ -1,22 +1,20 @@
 package com.mycompany.movie;
 
 import com.mycompany.movie.controller.MovieController;
-import com.mycompany.movie.repository.FileMovieRepository;
-import com.mycompany.movie.service.DefaultMovieService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * Hello world!
+ * Applicationn de demarrage par Inversion de contrôle
  *
  */
 public class App 
 {
     public static void main( String[] args )
     {
-        MovieController movieController = new MovieController();
-        FileMovieRepository movieRepository = new FileMovieRepository();
-        DefaultMovieService movieService = new DefaultMovieService();
-        movieService.setMovieRepository(movieRepository);
-        movieController.setMovieService(movieService);
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        // Utilisation de l'ID du bean
+        MovieController movieController = (MovieController) context.getBean("movieControllerRef");
         movieController.addUsingConsole();
     }
 }

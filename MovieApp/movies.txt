@@ -2,3 +2,7 @@ Interstellar;Fantastique
 La grande Vadrouille;comedie
 Goziila;Science Fiction
 Joker;Drame
+Fast and Furouis 9;Action
+Superman;Fantastique
+Spider-Man;Fantastique
+Rambo;Action
