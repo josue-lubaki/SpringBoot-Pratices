@@ -9,11 +9,8 @@
 
     <context:annotation-config/>
     <context:property-placeholder location="classpath:application.properties"/>
-
-    <bean class="com.mycompany.movie.repository.FileMovieRepository"/>
-
-    <bean class="com.mycompany.movie.controller.MovieController"/>
-
-    <bean class="com.mycompany.movie.service.DefaultMovieService"/>
+    <context:component-scan base-package="com.mycompany.movie.service"/>
+    <context:component-scan base-package="com.mycompany.movie.controller"/>
+    <context:component-scan base-package="com.mycompany.movie.repository.file"/>
 
 </beans>

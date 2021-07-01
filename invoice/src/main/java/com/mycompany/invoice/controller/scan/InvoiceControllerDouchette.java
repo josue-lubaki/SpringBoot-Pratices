@@ -1,12 +1,13 @@
-package com.mycompany.invoice.controller;
+package com.mycompany.invoice.controller.scan;
 
+import com.mycompany.invoice.controller.InvoiceControllerInterface;
 import com.mycompany.invoice.entity.Invoice;
 import com.mycompany.invoice.service.InvoiceServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
-import java.util.Scanner;
-
-public class InvoiceControllerKeyboard implements InvoiceControllerInterface {
+@Controller
+public class InvoiceControllerDouchette implements InvoiceControllerInterface {
 
     @Autowired
     private InvoiceServiceInterface invoiceService;
@@ -20,15 +21,10 @@ public class InvoiceControllerKeyboard implements InvoiceControllerInterface {
     }
 
     @Override
-    public void createInvoice(){
-        System.out.println( "What is the customer name ?");
-        Scanner scan = new Scanner(System.in);
-        String customerName = scan.nextLine();
-
-        // instancier la facture et y inscrire le nom du client
+    public void createInvoice() {
+        System.out.println("Usage of a Scanner");
         Invoice invoice = new Invoice();
-        invoice.setCustomerName(customerName);
-
+        invoice.setCustomerName("Virgin Galatic");
         invoiceService.createInvoice(invoice);
     }
 }

@@ -8,14 +8,15 @@
 
     <context:annotation-config/>
     <context:property-placeholder location="application.properties"/>
+    <context:component-scan base-package="com.mycompany.invoice.controller.web"/>
+    <context:component-scan base-package="com.mycompany.invoice.repository.database"/>
+    <context:component-scan base-package="com.mycompany.invoice.service.prefix"/>
 
-    <bean class="com.mycompany.invoice.service.InvoiceServicePrefix">
+    <!--bean class="com.mycompany.invoice.service.prefix.InvoiceServicePrefix"/>
 
-    </bean>
+    <bean class="com.mycompany.invoice.controller.web.InvoiceControllerWeb"/>
 
-    <bean class="com.mycompany.invoice.controller.InvoiceControllerWeb"/>
-
-    <bean class="com.mycompany.invoice.repository.InvoiceRepositoryDatabase"/>
+    <bean class="com.mycompany.invoice.repository.database.InvoiceRepositoryDatabase"/-->
     
 
 </beans>

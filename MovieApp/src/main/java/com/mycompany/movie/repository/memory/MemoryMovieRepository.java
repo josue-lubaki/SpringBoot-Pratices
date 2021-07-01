@@ -1,11 +1,14 @@
-package com.mycompany.movie.repository;
+package com.mycompany.movie.repository.memory;
 
 import com.mycompany.movie.entity.Movie;
+import com.mycompany.movie.repository.MovieRepositoryInterface;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MemoryMovieRepository implements MovieRepositoryInterface{
+@Repository
+public class MemoryMovieRepository implements MovieRepositoryInterface {
     public List<Movie> movies = new ArrayList<>();
 
     public void addMovie (Movie movie){

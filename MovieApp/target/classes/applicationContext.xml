@@ -8,12 +8,16 @@
         https://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:annotation-config/>
-    <context:property-placeholder location="file:moviesProperties.txt"/>
+    <context:property-placeholder location="classpath:application.properties"/>
+    <context:component-scan base-package="com.mycompany.movie.service"/>
+    <context:component-scan base-package="com.mycompany.movie.controller"/>
+    <context:component-scan base-package="com.mycompany.movie.repository.file"/>
 
-    <bean class="com.mycompany.movie.repository.FileMovieRepository"/>
+
+    <!-- bean class="com.mycompany.movie.repository.file.FileMovieRepository"/>
 
     <bean class="com.mycompany.movie.controller.MovieController"/>
 
-    <bean class="com.mycompany.movie.service.DefaultMovieService"/>
+    <bean class="com.mycompany.movie.service.DefaultMovieService"/-->
 
 </beans>
