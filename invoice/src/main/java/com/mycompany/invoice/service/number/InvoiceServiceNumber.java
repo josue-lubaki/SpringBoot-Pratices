@@ -6,7 +6,7 @@ import com.mycompany.invoice.service.InvoiceServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class InvoiceServiceNumber implements InvoiceServiceInterface {
 
     private static long lastNumber = 0L;

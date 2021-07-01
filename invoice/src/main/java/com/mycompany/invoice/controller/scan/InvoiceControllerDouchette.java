@@ -6,7 +6,7 @@ import com.mycompany.invoice.service.InvoiceServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-@Controller
+//@Controller
 public class InvoiceControllerDouchette implements InvoiceControllerInterface {
 
     @Autowired
