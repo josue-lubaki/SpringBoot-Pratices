@@ -1,11 +1,11 @@
 # Spring [![wakatime](https://wakatime.com/badge/github/josue-lubaki/SpringBoot-Pratices.svg)](https://wakatime.com/badge/github/josue-lubaki/SpringBoot-Pratices)
  Pratique sur les principes de base de Spring et Spring Boot
 
-Démarrage project : https://start.spring.io/
-console :
--- $ set JAVA_HOME=C:\Program Files\Java\jdk-11.0.11
--- $ mvnw spring-boot:run
-Demander à Maven de rebuilder l'appplication
+Démarrage project : https://start.spring.io/ <br>
+console : <br>
+-- $ set JAVA_HOME=C:\Program Files\Java\jdk-11.0.11 <br>
+-- $ mvnw spring-boot:run <br>
+Demander à Maven de rebuilder l'appplication <br>
 -- $ mvnw clean install
 
 # Patterns Utilisés
