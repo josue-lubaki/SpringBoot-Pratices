@@ -3,6 +3,8 @@ package com.mycompany.invoice;
 import com.mycompany.invoice.controller.InvoiceControllerInterface;
 import com.mycompany.invoice.repository.InvoiceRepositoryInterface;
 import com.mycompany.invoice.service.InvoiceServiceInterface;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Scanner;
 
@@ -11,36 +13,10 @@ import java.util.Scanner;
  */
 public class App {
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-
-        System.out.println("Quel est la Classe de controller ? ");
-        String controllerClass = scan.nextLine();
-        System.out.println("Quel est la Classe de service ?");
-        String serviceClass = scan.nextLine();
-        System.out.println("Quel est la Classe de repository ?");
-        String repositoryClass = scan.nextLine();
-
-        // Initialisation des interfaces des composants
-        InvoiceControllerInterface invoiceController = null;
-        InvoiceServiceInterface invoiceService = null;
-        InvoiceRepositoryInterface invoiceRepository = null;
-
-        // instanciation des composants grâce à la reflection de Java
-        try {
-            invoiceController = (InvoiceControllerInterface) Class.forName(controllerClass).getDeclaredConstructor().newInstance();
-            invoiceService = (InvoiceServiceInterface) Class.forName(serviceClass).getDeclaredConstructor().newInstance();
-            invoiceRepository = (InvoiceRepositoryInterface) Class.forName(repositoryClass).getDeclaredConstructor().newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // Démarrer les services tout en faisant l'injection des dépendances entre les composants
-        if (invoiceController != null && invoiceService != null) {
-            invoiceController.setInvoiceService(invoiceService);
-            invoiceService.setInvoiceRepository(invoiceRepository);
-            invoiceController.createInvoice();
-        }
-
+        // instancier une application contexte (conteneur leger) sur la base d'un fichier XML qui se trouve sur mon ClassPath
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        InvoiceControllerInterface invoiceController =  context.getBean(InvoiceControllerInterface.class);
+        invoiceController.createInvoice();
     }
 }
 

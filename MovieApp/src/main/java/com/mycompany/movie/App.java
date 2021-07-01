@@ -1,11 +1,8 @@
 package com.mycompany.movie;
 
 import com.mycompany.movie.controller.MovieController;
-import com.mycompany.movie.entity.Movie;
-import com.mycompany.movie.repository.GoLiveMovieRepository;
-import com.mycompany.movie.service.MovieService;
-
-import java.util.Scanner;
+import com.mycompany.movie.repository.FileMovieRepository;
+import com.mycompany.movie.service.DefaultMovieService;
 
 /**
  * Hello world!
@@ -16,8 +13,8 @@ public class App
     public static void main( String[] args )
     {
         MovieController movieController = new MovieController();
-        GoLiveMovieRepository movieRepository = new GoLiveMovieRepository();
-        MovieService movieService = new MovieService();
+        FileMovieRepository movieRepository = new FileMovieRepository();
+        DefaultMovieService movieService = new DefaultMovieService();
         movieService.setMovieRepository(movieRepository);
         movieController.setMovieService(movieService);
         movieController.addUsingConsole();
