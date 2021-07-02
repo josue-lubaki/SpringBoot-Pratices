@@ -15,7 +15,6 @@ public class App {
         InvoiceControllerInterface invoiceController =  context.getBean(InvoiceControllerInterface.class);
         invoiceController.createInvoice();
     }
-
 }
 
 
