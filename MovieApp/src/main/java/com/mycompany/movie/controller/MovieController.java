@@ -4,6 +4,7 @@ import com.mycompany.movie.entity.Movie;
 import com.mycompany.movie.service.MovieServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Scanner;
 
@@ -35,4 +36,10 @@ public class MovieController {
         // appel de la methode du service
         movieService.registerMovie(movie);
     }
+
+//    @RequestMapping("/about-us")
+//    public String aboutUs(){
+//        System.out.println("La methode about us a été invoquée");
+//        return "";
+//    }
 }
