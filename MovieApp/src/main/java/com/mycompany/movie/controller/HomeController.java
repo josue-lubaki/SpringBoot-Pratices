@@ -4,13 +4,13 @@ import com.mycompany.movie.entity.Movie;
 import com.mycompany.movie.service.MovieServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Scanner;
+import java.util.List;
 
 @Controller
-public class MovieController {
-
+public class HomeController {
     @Autowired
     private MovieServiceInterface movieService;
 
@@ -22,19 +22,9 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    public void addUsingConsole(){
-        System.out.println( "Entrer le Titre et le genre du film" );
-        Scanner scan = new Scanner(System.in);
-        String titre = scan.nextLine();
-        String genre = scan.nextLine();
-
-        // instancier le movie
-        Movie movie = new Movie();
-        movie.setTitre(titre);
-        movie.setGenre(genre);
-
-        // appel de la methode du service
-        movieService.registerMovie(movie);
+    @RequestMapping("/dvdstore-home")
+    public @ModelAttribute("movies")
+    List<? extends Movie> displayHome(){
+        return movieService.getMovieList();
     }
-
 }

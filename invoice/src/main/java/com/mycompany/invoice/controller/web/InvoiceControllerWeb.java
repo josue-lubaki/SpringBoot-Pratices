@@ -5,6 +5,7 @@ import com.mycompany.invoice.entity.Invoice;
 import com.mycompany.invoice.service.InvoiceServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,10 +40,9 @@ public class InvoiceControllerWeb implements InvoiceControllerInterface {
     }
 
     @RequestMapping("/invoice-home")
-    public String displayHome(HttpServletRequest request){
+    public @ModelAttribute("invoices")
+    List<? extends Invoice> displayHome(){
         System.out.println("La methode display home a été invoqué");
-        List<Invoice> invoices = invoiceService.getInvoiceList();
-        request.setAttribute("invoices",invoices);
-        return "index";
+        return invoiceService.getInvoiceList();
     }
 }
