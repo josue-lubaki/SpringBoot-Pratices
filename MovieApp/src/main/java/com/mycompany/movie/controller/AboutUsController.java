@@ -8,6 +8,6 @@ public class AboutUsController {
     @RequestMapping("about-us")
     public String displayFullDatail(){
         System.out.println("La methode displyaFullDetail a été invoquée");
-        return "";
+        return "about-us";
     }
 }
