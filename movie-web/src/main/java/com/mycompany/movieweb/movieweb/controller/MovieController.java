@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Scanner;
 
 @Controller
-@RequestMapping("/movie")
+@RequestMapping("/movie/")
 public class MovieController {
 
     @Autowired
@@ -25,10 +25,12 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @RequestMapping("/{id}")
+    @RequestMapping("{id}")
     public String displayMovieCard(@PathVariable("id") long id, Model model){
         model.addAttribute("movie",movieService.getMovieById(id));
         return "movie-details";
     }
+
+
 
 }
