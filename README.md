@@ -18,3 +18,5 @@ Demander à Maven de rebuilder l'appplication <br>
 grâce à l'injection de dépendance.
 
 * Le contenuer leger de Spring : est un mecanisme qui consiste à stocker les informations de la configuration dans un système de fichier, lire les fichiers en instanciant les classes, faire les new Insatances et mettre en relation les composants en invoquant les setters pour l'injection de dépendance. Il effectue l'inversion de contrôle et garde en mémoire tous les composants instanciés durant la toute la vie de l'application, ceci sous forme de graphe pour materialiser les dépendances qui existent entre ces composants.
+
+<!-- https://github.com/jehret -->
