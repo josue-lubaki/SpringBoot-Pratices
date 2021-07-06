@@ -29,4 +29,10 @@ public class DefaultMovieService implements MovieServiceInterface{
     public List<Movie> getMovieList() {
         return movieRepository.list();
     }
+
+    @Override
+    public Movie getMovieById(long id) {
+        System.out.println("La methode getMovieById (Service) a été invoquée");
+        return movieRepository.getById(id);
+    }
 }

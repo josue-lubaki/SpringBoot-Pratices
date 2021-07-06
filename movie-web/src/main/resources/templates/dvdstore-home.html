@@ -2,14 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>HomePage</title>
+    <title>DVDStore</title>
 </head>
 <body>
-  <table border="1">
-    <tr th:each="movie : ${movies}">
-      <td th:text="${movie.titre}"></td>
-      <td th:text="${movie.genre}"></td>
+<H1>DVDStore : LA boutique de DVD en ligne</H1>
+<table border="1">
+    <tr th:each="movie: ${movies}">
+        <td>
+            <a th:href="@{/movie/{id}(id=${movie.id})}" th:text="${movie.titre}"/>
+        </td>
+        <td th:text="${movie.genre}"></td>
     </tr>
-  </table>
+</table>
 </body>
 </html>

@@ -4,12 +4,17 @@ import com.mycompany.movie.core.entity.Movie;
 import com.mycompany.movie.core.service.MovieServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Scanner;
 
 @Controller
+@RequestMapping("/movie")
 public class MovieController {
 
+    @Autowired
     private MovieServiceInterface movieService;
 
     public MovieServiceInterface getMovieService() {
@@ -20,19 +25,10 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    public void addUsingConsole(){
-        System.out.println( "Entrer le Titre et le genre du film" );
-        Scanner scan = new Scanner(System.in);
-        String titre = scan.nextLine();
-        String genre = scan.nextLine();
-
-        // instancier le movie
-        Movie movie = new Movie();
-        movie.setTitre(titre);
-        movie.setGenre(genre);
-
-        // appel de la methode du service
-        movieService.registerMovie(movie);
+    @RequestMapping("/{id}")
+    public String displayMovieCard(@PathVariable("id") long id, Model model){
+        model.addAttribute("movie",movieService.getMovieById(id));
+        return "movie-details";
     }
 
 }

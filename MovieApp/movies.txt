@@ -1,9 +1,9 @@
-Interstellar;Fantastique
-La grande Vadrouille;comedie
-Goziila;Science Fiction
-Joker;Drame
-Fast and Furouis 9;Action
-Superman;Fantastique
-Spider-Man;Fantastique
-Rambo;Action
-Nun;Horreur
+1;Interstellar;Fantastique
+2;La grande Vadrouille;comedie
+3;Goziila;Science Fiction
+4;Joker;Drame
+5;Fast and Furouis 9;Action
+6;Superman;Fantastique
+7;Spider-Man;Fantastique
+8;Rambo;Action
+9;Nun;Horreur
