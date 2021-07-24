@@ -15,7 +15,7 @@ public class FileMovieRepository implements MovieRepositoryInterface {
     @Value("${movieFile.path}")
     private File file;
 
-    public void addMovie(Movie movie){
+    public Movie addMovie(Movie movie){
         FileWriter writer;
         try{
             writer=new FileWriter(file,true);
@@ -23,9 +23,11 @@ public class FileMovieRepository implements MovieRepositoryInterface {
             movie.setId(++lastMovieId);
             writer.write(movie.getId() + ";" + movie.getTitre() + ";" + movie.getGenre() + "\n");
             writer.close();
+            return movie;
         }
         catch (IOException e){
             e.printStackTrace();
+            return null;
         }
     }
 

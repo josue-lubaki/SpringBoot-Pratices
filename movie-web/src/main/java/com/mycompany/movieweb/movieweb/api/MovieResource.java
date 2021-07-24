@@ -1,4 +1,4 @@
-package com.mycompany.movieweb.movieweb.controller;
+package com.mycompany.movieweb.movieweb.api;
 
 import com.mycompany.movie.core.entity.Movie;
 import com.mycompany.movie.core.service.MovieServiceInterface;
@@ -8,13 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.Scanner;
+import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/movie")
-public class MovieController {
+public class MovieResource {
 
     @Autowired
     private MovieServiceInterface movieService;
@@ -27,27 +28,23 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    /*@GetMapping("/{id}")
-    public String displayMovieCard(@PathVariable("id") long id, Model model){
-        model.addAttribute("movieInfo",movieService.getMovieById(id));
-        return "movie-details";
-    }*/
+    @GetMapping
+    public List<Movie> list(){
+        return movieService.getMovieList();
+    }
+
+    @GetMapping("/{id}")
+    public Movie get(@PathVariable("id") long id){
+        return movieService.getMovieById(id);
+    }
 
     /**
      * Methode qui permet de créer un film
      * */
-    /*@PostMapping()
-    public String addMovie(@Valid  @ModelAttribute("movieToCreate") MovieForm movieForm, BindingResult result){
-        if(result.hasErrors()){
-            return "add-movie-form";
-        }
-
-        Movie movie = new Movie();
-        movie.setTitre(movieForm.getTitre());
-        movie.setGenre(movieForm.getGenre());
-        movieService.registerMovie(movie);
-        return "movie-added";
-    }*/
+    @PostMapping()
+    public Movie add(@RequestBody Movie movie){
+        return movieService.registerMovie(movie);
+    }
 
 
 

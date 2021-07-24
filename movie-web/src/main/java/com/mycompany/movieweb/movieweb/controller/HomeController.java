@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -24,9 +25,10 @@ public class HomeController {
     }
 
     @GetMapping("/dvdstore-home")
-    public @ModelAttribute("movies")
-    List<? extends Movie> displayHome(){
-        return movieService.getMovieList();
+    public ModelAndView displayHome(){
+        ModelAndView mv = new ModelAndView("dvdstore-home");
+        mv.addObject("movies", movieService.getMovieList());
+        return mv;
     }
 
     @GetMapping("/add-movie-form")

@@ -21,8 +21,8 @@ public class DefaultMovieService implements MovieServiceInterface{
         this.movieRepository = movieRepository;
     }
 
-    public void registerMovie(Movie movie){
-        movieRepository.addMovie(movie);
+    public Movie registerMovie(Movie movie){
+        return movieRepository.addMovie(movie);
     }
 
     @Override
