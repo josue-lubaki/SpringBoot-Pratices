@@ -7,7 +7,9 @@
 <body>
     <form th:action="@{/invoice}" method="POST" th:object="${invoiceForm}">
         <p>Customer Name : <input type="text" th:field="*{customerName}"> </p>
+        <div th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"></div>
         <p>Order Number : <input type="text" th:field="*{orderNumber}"> </p>
+        <div th:if="${#fields.hasErrors('orderNumber')}" th:errors="*{orderNumber}"></div>
         <input type="submit" value="OK">
     </form>
 </body>
