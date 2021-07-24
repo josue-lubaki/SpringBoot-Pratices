@@ -5,13 +5,12 @@ import com.mycompany.movie.core.service.MovieServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Scanner;
 
 @Controller
-@RequestMapping("/movie/")
+@RequestMapping("/movie")
 public class MovieController {
 
     @Autowired
@@ -25,10 +24,19 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @RequestMapping("{id}")
+    @GetMapping("/{id}")
     public String displayMovieCard(@PathVariable("id") long id, Model model){
-        model.addAttribute("movie",movieService.getMovieById(id));
+        model.addAttribute("movieInfo",movieService.getMovieById(id));
         return "movie-details";
+    }
+
+    /**
+     * Methode qui permet de créer un film
+     * */
+    @PostMapping()
+    public String addMovie(@ModelAttribute("movieToCreate") Movie movie){
+        movieService.registerMovie(movie);
+        return "movie-added";
     }
 
 

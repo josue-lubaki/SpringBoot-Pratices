@@ -9,8 +9,10 @@ import java.util.List;
 //@Repository
 public class MemoryMovieRepository implements MovieRepositoryInterface {
     public List<Movie> movies = new ArrayList<>();
+    public static long lastMovieId = 0L;
 
     public void addMovie (Movie movie){
+        movie.setId(++lastMovieId);
         movies.add(movie);
         System.out.println("The movie "+movie.getTitre()+" has been added.");
     }

@@ -22,15 +22,16 @@ public class InvoiceControllerKeyboard implements InvoiceControllerInterface {
     }
 
     @Override
-    public void createInvoice(){
+    public String createInvoice(Invoice invoice){
         System.out.println( "What is the customer name ?");
         Scanner scan = new Scanner(System.in);
         String customerName = scan.nextLine();
 
         // instancier la facture et y inscrire le nom du client
-        Invoice invoice = new Invoice();
+        invoice = new Invoice();
         invoice.setCustomerName(customerName);
 
         invoiceService.createInvoice(invoice);
+        return null;
     }
 }

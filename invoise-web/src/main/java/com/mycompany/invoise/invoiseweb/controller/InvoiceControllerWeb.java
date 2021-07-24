@@ -6,9 +6,7 @@ import com.mycompany.invoice.core.service.InvoiceServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -29,20 +27,14 @@ public class InvoiceControllerWeb implements InvoiceControllerInterface {
         this.invoiceService = invoiceService;
     }
 
-
-    public void createInvoice(){
-
-        Scanner scan = new Scanner(System.in);
-        String customerName = "Tesla";
-
-        // instancier la facture et y inscrire le nom du client
-        Invoice invoice = new Invoice();
-        invoice.setCustomerName(customerName);
-
+    //@RequestMapping(value ="/", method= RequestMethod.POST)
+    @PostMapping()
+    public String createInvoice(@ModelAttribute("form") Invoice invoice){
         invoiceService.createInvoice(invoice);
+        return "invoice-created";
     }
 
-    @RequestMapping("/home")
+    @GetMapping("/home")
     public ModelAndView displayHome(){
         System.out.println("La methode display home a été invoqué");
         ModelAndView mv = new ModelAndView("invoice-home");
@@ -54,11 +46,16 @@ public class InvoiceControllerWeb implements InvoiceControllerInterface {
      * Methode qui permet de retourner les informations d'une facture en particulier
      * @return String (ViewName)
      * */
-    @RequestMapping("/{id}")
+    @GetMapping("/{id}")
     public String displayInvoice(@PathVariable("id") String number, Model model){
         System.out.println("La methode display Invoice a été invoqué");
         model.addAttribute("invoice", invoiceService.getInvoiceByNumber(number));
         return "invoice-details";
+    }
+
+    @GetMapping("/create-form")
+    public String displayInvoiceCreateForm(@ModelAttribute("form") Invoice invoice){
+        return "invoice-create-form";
     }
 
 }
