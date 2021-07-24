@@ -5,11 +5,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class MovieForm {
-    @NotBlank()
-    @Size(max = 20)
+    @NotBlank(message = "Veuillez entrer un titre")
+    @Size(max = 20, message = "Entrez un titre de 20 caractères au plus")
     private String titre;
     private int nbreExemplaireDisponible;
-    @NotBlank
+    @NotBlank(message = "Veuillez choisir un genre")
     private String genre;
     private String acteurPrincipal;
     private long id;
