@@ -32,7 +32,7 @@ public class InvoiceControllerWeb {
      * et BindingResult doit toujours être placé après le dernier @ModelAttribute si plusieurs
      * */
     @PostMapping()
-    public String createInvoice(@Valid @ModelAttribute InvoiceForm invoiceForm, BindingResult result){
+    public String createInvoice(@Valid @ModelAttribute("invoiceForm") InvoiceForm invoiceForm, BindingResult result){
         if(result.hasErrors()){
             return "invoice-create-form";
         }
@@ -63,7 +63,7 @@ public class InvoiceControllerWeb {
     }
 
     @GetMapping("/create-form")
-    public String displayInvoiceCreateForm(@ModelAttribute InvoiceForm invoice){
+    public String displayInvoiceCreateForm(@ModelAttribute("invoiceForm") InvoiceForm invoice){
         return "invoice-create-form";
     }
 
