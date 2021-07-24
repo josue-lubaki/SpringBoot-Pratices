@@ -1,20 +1,20 @@
 package com.mycompany.invoise.invoiseweb.controller;
 
-import com.mycompany.invoice.core.controller.InvoiceControllerInterface;
 import com.mycompany.invoice.core.entity.Invoice;
 import com.mycompany.invoice.core.service.InvoiceServiceInterface;
+import com.mycompany.invoise.invoiseweb.form.InvoiceForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-import java.util.Scanner;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/invoice")
-public class InvoiceControllerWeb implements InvoiceControllerInterface {
+public class InvoiceControllerWeb {
 
     @Autowired
     private InvoiceServiceInterface invoiceService;
@@ -27,9 +27,18 @@ public class InvoiceControllerWeb implements InvoiceControllerInterface {
         this.invoiceService = invoiceService;
     }
 
-    //@RequestMapping(value ="/", method= RequestMethod.POST)
+    /**
+     * BindingResult : retourne les erreurs contenues dans le formulaire avec la methode hasErrors()
+     * et BindingResult doit toujours être placé après le dernier @ModelAttribute si plusieurs
+     * */
     @PostMapping()
-    public String createInvoice(@ModelAttribute("form") Invoice invoice){
+    public String createInvoice(@Valid @ModelAttribute InvoiceForm invoiceForm, BindingResult result){
+        if(result.hasErrors()){
+            return "invoice-create-form";
+        }
+        Invoice invoice = new Invoice();
+        invoice.setCustomerName(invoiceForm.getCustomerName());
+        invoice.setOrderNumber(invoiceForm.getOrderNumber());
         invoiceService.createInvoice(invoice);
         return "invoice-created";
     }
@@ -54,7 +63,7 @@ public class InvoiceControllerWeb implements InvoiceControllerInterface {
     }
 
     @GetMapping("/create-form")
-    public String displayInvoiceCreateForm(@ModelAttribute("form") Invoice invoice){
+    public String displayInvoiceCreateForm(@ModelAttribute InvoiceForm invoice){
         return "invoice-create-form";
     }
 
