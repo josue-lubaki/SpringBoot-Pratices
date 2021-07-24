@@ -8,7 +8,19 @@
 <body>
     <form th:action="@{/movie}" method="POST" th:object="${movieToCreate}">
         <p>Titre : <input type="text" th:field="*{titre}"></p>
-        <p>Genre : <input type="text" th:field="*{genre}"></p>
+
+        <select th:field="*{genre}">
+            <option th:value="Comedie" th:text="Comédie"></option>
+            <option th:value="Horreur" th:text="Horreur"></option>
+            <option th:value="Thriller" th:text="Thriller"></option>
+            <option th:value="Action" th:text="Action"></option>
+            <option th:value="Romantique" th:text="Romantique"></option>
+            <option th:value="Drame" th:text="Drame"></option>
+            <option th:value="Animation" th:text="Animation"></option>
+            <option th:value="Aventure" th:text="Aventure"></option>
+            <option th:value="Fantastique" th:text="Fantastique"></option>
+            <option th:value="Enfant" th:text="Enfant"></option>
+        </select>
         <input type="submit">
     </form>
 </body>

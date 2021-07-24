@@ -2,11 +2,14 @@ package com.mycompany.movieweb.movieweb.controller;
 
 import com.mycompany.movie.core.entity.Movie;
 import com.mycompany.movie.core.service.MovieServiceInterface;
+import com.mycompany.movieweb.movieweb.form.MovieForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Scanner;
 
 @Controller
@@ -34,7 +37,14 @@ public class MovieController {
      * Methode qui permet de créer un film
      * */
     @PostMapping()
-    public String addMovie(@ModelAttribute("movieToCreate") Movie movie){
+    public String addMovie(@Valid  @ModelAttribute("movieToCreate") MovieForm movieForm, BindingResult result){
+        if(result.hasErrors()){
+            return "add-movie-form";
+        }
+
+        Movie movie = new Movie();
+        movie.setTitre(movieForm.getTitre());
+        movie.setGenre(movieForm.getGenre());
         movieService.registerMovie(movie);
         return "movie-added";
     }

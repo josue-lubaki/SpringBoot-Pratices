@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -29,7 +30,7 @@ public class HomeController {
     }
 
     @GetMapping("/add-movie-form")
-    public String displayMovieForm(@ModelAttribute("movieToCreate") Movie movie){
+    public String displayMovieForm(@Valid @ModelAttribute("movieToCreate") Movie movie){
         return "add-movie-form";
     }
 }

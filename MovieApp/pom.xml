@@ -7,18 +7,6 @@
   <groupId>com.mycompany.movie</groupId>
   <artifactId>MovieApp</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>8</source>
-          <target>8</target>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 
   <name>MovieApp</name>
   <!-- FIXME change it to the project's website -->
@@ -37,7 +25,6 @@
       <artifactId>spring-context</artifactId>
       <version>5.2.15.RELEASE</version>
     </dependency>
-
 
     <dependency>
       <groupId>junit</groupId>
