@@ -31,7 +31,7 @@ public class InvoiceControllerWeb {
      * BindingResult : retourne les erreurs contenues dans le formulaire avec la methode hasErrors()
      * et BindingResult doit toujours être placé après le dernier @ModelAttribute si plusieurs
      * */
-    @PostMapping()
+    /*@PostMapping()
     public String createInvoice(@Valid @ModelAttribute("invoiceForm") InvoiceForm invoiceForm, BindingResult result){
         if(result.hasErrors()){
             return "invoice-create-form";
@@ -41,7 +41,7 @@ public class InvoiceControllerWeb {
         invoice.setOrderNumber(invoiceForm.getOrderNumber());
         invoiceService.createInvoice(invoice);
         return "invoice-created";
-    }
+    }*/
 
     @GetMapping("/home")
     public ModelAndView displayHome(){
@@ -55,12 +55,12 @@ public class InvoiceControllerWeb {
      * Methode qui permet de retourner les informations d'une facture en particulier
      * @return String (ViewName)
      * */
-    @GetMapping("/{id}")
+    /*@GetMapping("/{id}")
     public String displayInvoice(@PathVariable("id") String number, Model model){
         System.out.println("La methode display Invoice a été invoqué");
         model.addAttribute("invoice", invoiceService.getInvoiceByNumber(number));
         return "invoice-details";
-    }
+    }*/
 
     @GetMapping("/create-form")
     public String displayInvoiceCreateForm(@ModelAttribute("invoiceForm") InvoiceForm invoice){

@@ -10,7 +10,7 @@
 <table border="1">
     <tr th:each="movie: ${movies}">
         <td>
-            <a th:href="@{/movie/{id}(id=${movie.id})}" th:text="${movie.titre}"/>
+            <a th:href="@{/movie/{id}(id=${movie.id})}" th:text="${movie.titre}"></a>
         </td>
         <td th:text="${movie.genre}"></td>
     </tr>
