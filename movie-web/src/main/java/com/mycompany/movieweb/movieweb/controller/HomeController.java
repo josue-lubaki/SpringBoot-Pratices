@@ -24,15 +24,15 @@ public class HomeController {
         this.movieService = movieService;
     }
 
-    @GetMapping("/dvdstore-home")
-    public ModelAndView displayHome(){
-        ModelAndView mv = new ModelAndView("dvdstore-home");
-        mv.addObject("movies", movieService.getMovieList());
-        return mv;
-    }
-
-    @GetMapping("/add-movie-form")
-    public String displayMovieForm(@Valid @ModelAttribute("movieToCreate") Movie movie){
-        return "add-movie-form";
-    }
+//    @GetMapping("/dvdstore-home")
+//    public ModelAndView displayHome(){
+//        ModelAndView mv = new ModelAndView("dvdstore-home");
+//        mv.addObject("movies", movieService.getMovieList());
+//        return mv;
+//    }
+//
+//    @GetMapping("/add-movie-form")
+//    public String displayMovieForm(@Valid @ModelAttribute("movieToCreate") Movie movie){
+//        return "add-movie-form";
+//    }
 }

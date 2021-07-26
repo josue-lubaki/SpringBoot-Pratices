@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.Scanner;
@@ -33,10 +34,24 @@ public class MovieController {
         return "movie-details";
     }*/
 
+    @GetMapping("/dvdstore-home")
+    public ModelAndView displayHome(){
+        ModelAndView mv = new ModelAndView("dvdstore-home");
+        mv.addObject("movies", movieService.getMovieList());
+        return mv;
+    }
+
+
+    @GetMapping("/add-movie-form")
+    public String displayMovieForm(@Valid @ModelAttribute("movieToCreate") Movie movie){
+        return "add-movie-form";
+    }
+
+
     /**
      * Methode qui permet de créer un film
      * */
-    /*@PostMapping()
+    @PostMapping("/add")
     public String addMovie(@Valid  @ModelAttribute("movieToCreate") MovieForm movieForm, BindingResult result){
         if(result.hasErrors()){
             return "add-movie-form";
@@ -47,7 +62,7 @@ public class MovieController {
         movie.setGenre(movieForm.getGenre());
         movieService.registerMovie(movie);
         return "movie-added";
-    }*/
+    }
 
 
 

@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{/css/style.css}" type="text/css" rel="stylesheet">
     <title>Gestion des factures</title>
 </head>
 <body>
@@ -11,13 +12,27 @@
         <li><a href="create-form">Ajout de facture</a></li>
     </ul>
 
-    <table border="1">
-        <tr th:each="invoice: ${invoices}">
-            <td>
-                <a th:href="${invoice.number}" th:text="${invoice.number}"/>
-            </td>
-            <td th:text="${invoice.customerName}"></td>
-        </tr>
-    </table>
+    <section>
+        <div class="left-half">
+            <article id="invoice-list">
+
+            </article>
+        </div>
+        <div class="right-half">
+            <article id="invoice-detail">
+
+            </article>
+        </div>
+    </section>
+
+<!--    <table border="1">-->
+<!--        <tr th:each="invoice: ${invoices}">-->
+<!--            <td>-->
+<!--                <a th:href="${invoice.number}" th:text="${invoice.number}"/>-->
+<!--            </td>-->
+<!--            <td th:text="${invoice.customerName}"></td>-->
+<!--        </tr>-->
+<!--    </table>-->
+    <script th:src="@{/js/script.js}"></script>
 </body>
 </html>
