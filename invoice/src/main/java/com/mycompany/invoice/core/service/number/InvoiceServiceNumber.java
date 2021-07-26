@@ -4,10 +4,11 @@ import com.mycompany.invoice.core.entity.Invoice;
 import com.mycompany.invoice.core.repository.InvoiceRepositoryInterface;
 import com.mycompany.invoice.core.service.InvoiceServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-//@Service
+@Service
 public class InvoiceServiceNumber implements InvoiceServiceInterface {
 
     private static long lastNumber = 0L;
@@ -28,9 +29,7 @@ public class InvoiceServiceNumber implements InvoiceServiceInterface {
      * @returns void
      * */
     public Invoice createInvoice(Invoice invoice){
-        invoice.setNumber(String.valueOf(++lastNumber));
-        invoiceRepository.create(invoice);
-        return invoice;
+        return invoiceRepository.create(invoice);
     }
 
     @Override
