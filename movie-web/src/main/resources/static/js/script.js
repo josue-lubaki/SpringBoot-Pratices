@@ -67,5 +67,10 @@ function showDetail(movieNumber){
             p.appendChild(text);
             movieDetailNode.appendChild(p);
 
+            p = document.createElement("p");
+            text = document.createTextNode(`Description: ${res.descriptions}`);
+            p.appendChild(text);
+            movieDetailNode.appendChild(p);
+
         });
 }
