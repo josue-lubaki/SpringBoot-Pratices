@@ -6,6 +6,22 @@ public class Movie {
     private String genre;
     private String acteurPrincipal;
     private long id;
+    private String descriptions;
+
+    public Movie(long id, String titre, String genre) {
+        this.titre = titre;
+        this.genre = genre;
+        this.id = id;
+    }
+
+    public Movie(long id, String titre, String genre, String description) {
+        this.titre = titre;
+        this.genre = genre;
+        this.id = id;
+        this.descriptions = description;
+    }
+
+    public Movie() {}
 
     public long getId() {
         return id;
@@ -45,5 +61,13 @@ public class Movie {
 
     public void setActeurPrincipal(String acteurPrincipal) {
         this.acteurPrincipal = acteurPrincipal;
+    }
+
+    public String getDescriptions() {
+        return descriptions;
+    }
+
+    public void setDescriptions(String description) {
+        this.descriptions = description;
     }
 }
