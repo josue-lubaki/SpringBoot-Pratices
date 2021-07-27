@@ -1,11 +1,15 @@
 package com.mycompany.movie.core.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+
 public class Movie {
+    @Column("TITLE")
     private String titre;
-    private int nbreExemplaireDisponible;
     private String genre;
-    private String acteurPrincipal;
+    @Id
     private long id;
+    @Column("DESCRIPTION")
     private String descriptions;
 
     public Movie(long id, String titre, String genre) {
@@ -39,14 +43,6 @@ public class Movie {
         this.titre = titre;
     }
 
-    public int getNbreExemplaireDisponible() {
-        return nbreExemplaireDisponible;
-    }
-
-    public void setNbreExemplaireDisponible(int nbreExemplaireDisponible) {
-        this.nbreExemplaireDisponible = nbreExemplaireDisponible;
-    }
-
     public String getGenre() {
         return genre;
     }
@@ -55,13 +51,6 @@ public class Movie {
         this.genre = genre;
     }
 
-    public String getActeurPrincipal() {
-        return acteurPrincipal;
-    }
-
-    public void setActeurPrincipal(String acteurPrincipal) {
-        this.acteurPrincipal = acteurPrincipal;
-    }
 
     public String getDescriptions() {
         return descriptions;
