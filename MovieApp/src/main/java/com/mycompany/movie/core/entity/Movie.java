@@ -1,16 +1,17 @@
 package com.mycompany.movie.core.entity;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
+import javax.persistence.*;
 
+@Entity
 public class Movie {
-    @Column("TITLE")
-    private String titre;
-    private String genre;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column("DESCRIPTION")
+    @Column(name="TITLE")
+    private String titre;
+    @Column(name="DESCRIPTION")
     private String descriptions;
+    private String genre;
 
     public Movie(long id, String titre, String genre) {
         this.titre = titre;
