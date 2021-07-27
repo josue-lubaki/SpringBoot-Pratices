@@ -27,7 +27,7 @@
 //                Statement.RETURN_GENERATED_KEYS);
 //                ps.setString(1, movie.getTitre());
 //                ps.setString(2, movie.getGenre());
-//                ps.setString(3, movie.getDescriptions()!=null ? movie.getDescriptions() : "description manquante");
+//                ps.setString(3, movie.getDescriptions());
 //                return ps;
 //            }, kh);
 //        movie.setId(kh.getKey().longValue());
@@ -41,6 +41,7 @@
 //                        rs.getLong("ID"),
 //                        rs.getString("TITLE"),
 //                        rs.getString("GENRE")
+//                        rs.getString("DESCRIPTION")
 //                )
 //        );
 //    }

@@ -8,11 +8,10 @@ public class MovieForm {
     @NotBlank(message = "Veuillez entrer un titre")
     @Size(max = 20, message = "Entrez un titre de 20 caractères au plus")
     private String titre;
-    private int nbreExemplaireDisponible;
     @NotBlank(message = "Veuillez choisir un genre")
     private String genre;
-    private String acteurPrincipal;
     private long id;
+    private String descriptions;
 
     public long getId() {
         return id;
@@ -30,14 +29,6 @@ public class MovieForm {
         this.titre = titre;
     }
 
-    public int getNbreExemplaireDisponible() {
-        return nbreExemplaireDisponible;
-    }
-
-    public void setNbreExemplaireDisponible(int nbreExemplaireDisponible) {
-        this.nbreExemplaireDisponible = nbreExemplaireDisponible;
-    }
-
     public String getGenre() {
         return genre;
     }
@@ -46,11 +37,11 @@ public class MovieForm {
         this.genre = genre;
     }
 
-    public String getActeurPrincipal() {
-        return acteurPrincipal;
+    public String getDescriptions() {
+        return descriptions;
     }
 
-    public void setActeurPrincipal(String acteurPrincipal) {
-        this.acteurPrincipal = acteurPrincipal;
+    public void setDescriptions(String description) {
+        this.descriptions = description;
     }
 }
