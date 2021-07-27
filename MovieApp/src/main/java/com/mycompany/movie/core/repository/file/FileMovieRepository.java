@@ -23,7 +23,7 @@ public class FileMovieRepository implements MovieRepositoryInterface {
             writer=new FileWriter(file,true);
             long lastMovieId = StreamSupport.stream(findAll().spliterator(), false).map(Movie::getId).max(Long::compare).orElse(0L);
             movie.setId(++lastMovieId);
-            writer.write(movie.getId() + ";" + movie.getTitre() + ";" + movie.getGenre() + "\n");
+            writer.write(movie.getId() + ";" + movie.getTitre() + ";" + movie.getGenre() + ";" + movie.getDescriptions() + "\n");
             writer.close();
             return movie;
         }
@@ -50,6 +50,7 @@ public class FileMovieRepository implements MovieRepositoryInterface {
                 if (nextMovieId == id) {
                     movie.setTitre(allProperties[1]);
                     movie.setGenre(allProperties[2]);
+                    movie.setDescriptions(allProperties[3]);
                     return Optional.of(movie);
                 }
             }
@@ -63,6 +64,7 @@ public class FileMovieRepository implements MovieRepositoryInterface {
         }
         movie.setTitre("UNKNOWN");
         movie.setGenre("UNKNOWN");
+        movie.setDescriptions("UNKNOWN");
         return Optional.of(movie);
     }
 
@@ -82,6 +84,7 @@ public class FileMovieRepository implements MovieRepositoryInterface {
                 movie.setId(Long.parseLong(titreEtGenre[0]));
                 movie.setTitre(titreEtGenre[1]);
                 movie.setGenre(titreEtGenre[2]);
+                movie.setDescriptions(titreEtGenre[3]);
                 movies.add(movie);
             }
         } catch (FileNotFoundException e) {
@@ -114,12 +117,12 @@ public class FileMovieRepository implements MovieRepositoryInterface {
 
     @Override
     public void deleteAll(Iterable<? extends Movie> iterable) {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void deleteAll() {
-
+        throw new UnsupportedOperationException();
     }
 
 

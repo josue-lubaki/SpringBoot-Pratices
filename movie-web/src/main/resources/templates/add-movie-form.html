@@ -23,6 +23,7 @@
             <option th:value="Enfant" th:text="Enfant"></option>
         </select>
         <div th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"></div>
+        <p>Description : <textarea type="text" th:field="*{descriptions}"></textarea></p>
         <input type="submit">
     </form>
 </body>

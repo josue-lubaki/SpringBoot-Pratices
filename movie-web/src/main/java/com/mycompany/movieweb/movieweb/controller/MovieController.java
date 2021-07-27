@@ -60,6 +60,7 @@ public class MovieController {
         Movie movie = new Movie();
         movie.setTitre(movieForm.getTitre());
         movie.setGenre(movieForm.getGenre());
+        movie.setDescriptions(movieForm.getDescriptions());
         movieService.registerMovie(movie);
         return "movie-added";
     }
