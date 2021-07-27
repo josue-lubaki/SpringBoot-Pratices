@@ -33,7 +33,7 @@ public class InvoiceResource {
 
     @GetMapping
     public List<Invoice> list(){
-        return (List<Invoice>) invoiceService.getInvoiceList();
+        return invoiceService.getInvoiceList();
     }
 
     /**
