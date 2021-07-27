@@ -12,6 +12,7 @@ public class MovieForm {
     @NotBlank(message = "Veuillez choisir un genre")
     private String genre;
     private String acteurPrincipal;
+    private String descriptions;
     private long id;
 
     public long getId() {
@@ -28,6 +29,14 @@ public class MovieForm {
 
     public void setTitre(String titre) {
         this.titre = titre;
+    }
+
+    public String getDescriptions() {
+        return descriptions;
+    }
+
+    public void setDescriptions(String description) {
+        this.descriptions = description;
     }
 
     public int getNbreExemplaireDisponible() {

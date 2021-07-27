@@ -27,7 +27,7 @@ public class MovieRepository implements MovieRepositoryInterface {
                 Statement.RETURN_GENERATED_KEYS);
                 ps.setString(1, movie.getTitre());
                 ps.setString(2, movie.getGenre());
-                ps.setString(3, movie.getDescriptions()!=null ? movie.getDescriptions() : "description manquante");
+                ps.setString(3, movie.getDescriptions());
                 return ps;
             }, kh);
         movie.setId(kh.getKey().longValue());
@@ -36,11 +36,12 @@ public class MovieRepository implements MovieRepositoryInterface {
 
     @Override
     public List<Movie> list() {
-        return jdbcTemplate.query("SELECT ID,TITLE,GENRE FROM MOVIE",
+        return jdbcTemplate.query("SELECT ID,TITLE,GENRE,DESCRIPTION FROM MOVIE",
                 (rs, rowNum) -> new Movie(
                         rs.getLong("ID"),
                         rs.getString("TITLE"),
-                        rs.getString("GENRE")
+                        rs.getString("GENRE"),
+                        rs.getString("DESCRIPTION")
                 )
         );
     }
