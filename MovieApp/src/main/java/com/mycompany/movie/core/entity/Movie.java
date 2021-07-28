@@ -7,10 +7,11 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name="TITLE")
+    @Column(name="TITLE", length = 20, columnDefinition = "VARCHAR")
     private String titre;
     @Column(name="DESCRIPTION")
     private String descriptions;
+    @Column(length = 20, columnDefinition = "VARCHAR")
     private String genre;
 
     public Movie(long id, String titre, String genre) {
