@@ -1,6 +1,5 @@
 package com.mycompany.invoice.core.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
@@ -10,7 +9,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false,length = 50)
+    @Column(nullable = false,length = 50, columnDefinition = "VARCHAR")
     private String name;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL,orphanRemoval = true,optional = false)
