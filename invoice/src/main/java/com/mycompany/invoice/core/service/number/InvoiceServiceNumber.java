@@ -35,29 +35,20 @@ public class InvoiceServiceNumber implements InvoiceServiceInterface {
 
     @Override
     public Iterable<Invoice> getInvoiceList() {
-        Iterable<Invoice> invoices = invoiceRepository.findAll();
-        // Récuperer n'importe quelle propriété de ustomer pour forcer l'ORM à lancer une nouvelle requête qui celle-ci
-        // permettrait d'initialiser la clé proxy dont on a besoin
-        // initialiser les clients de chaque Invoice
-        invoices.forEach(invoice -> invoice.getCustomer().getName());
-
-        // Solution propre avec Hibernate
-        /* invoices.forEach(invoice ->Hibernate.initialize(invoice.getCustomer()); */
-
-        return invoices;
+        return invoiceRepository.findAll();
     }
 
     @Override
     public Invoice getInvoiceByNumber(String number) {
-        Optional<Invoice> OptionalInvoice= invoiceRepository.findById(number);
-        if(OptionalInvoice.isEmpty()){
-            throw new NoSuchElementException();
-        }
-
-        Invoice invoice = OptionalInvoice.get();
-        // Initialize proxy
-        invoice.getCustomer().getName();
-        return invoice;
+        return invoiceRepository.findById(number).orElseThrow();
+//        if(OptionalInvoice.isEmpty()){
+//            throw new NoSuchElementException();
+//        }
+//
+//        Invoice invoice = OptionalInvoice.get();
+//        // Initialize proxy
+//        invoice.getCustomer().getName();
+//        return invoice;
     }
 
 }
