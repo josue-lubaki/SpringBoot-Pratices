@@ -69,6 +69,36 @@ public class FileMovieRepository implements MovieRepositoryInterface {
     }
 
     @Override
+    public Optional<Movie> findById(long id) {
+        Movie movie = new Movie();
+        movie.setId(id);
+        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+            for(String line; (line = br.readLine()) != null; ) {
+
+                final String[] allProperties = line.split(";");
+                final long nextMovieId = Long.parseLong(allProperties[0]);
+                if (nextMovieId == id) {
+                    movie.setTitre(allProperties[1]);
+                    movie.setGenre(allProperties[2]);
+                    movie.setDescriptions(allProperties[3]);
+                    return Optional.of(movie);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NumberFormatException e) {
+            System.err.println("A movie from the file does not have a proper id");
+            e.printStackTrace();
+        }
+        movie.setTitre("UNKNOWN");
+        movie.setGenre("UNKNOWN");
+        movie.setDescriptions("UNKNOWN");
+        return Optional.of(movie);
+    }
+
+    @Override
     public boolean existsById(Long aLong) {
         throw new UnsupportedOperationException();
     }
@@ -133,4 +163,5 @@ public class FileMovieRepository implements MovieRepositoryInterface {
     public void setFile(File file) {
         this.file = file;
     }
+
 }
