@@ -1,40 +1,56 @@
 package com.mycompany.movie.core.entity;
 
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Movie {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column(name="TITLE", length = 20, columnDefinition = "VARCHAR")
+    private Long id;
+    @Column(nullable = false,length = 20, name = "TITLE")
     private String titre;
-    @Column(name="DESCRIPTION")
-    private String descriptions;
-    @Column(length = 20, columnDefinition = "VARCHAR")
+    @Column(nullable = false,length = 20)
     private String genre;
+    @Column(name = "DESCRIPTION")
+    private String descriptions;
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_MAIN_ACTOR")
+    private Actor mainActor;
+    @ManyToMany
+    @JoinTable(
+            name="MOVIE_SEC_ACTORS",
+            joinColumns = {@JoinColumn(name="ID_MOVIE")},
+            inverseJoinColumns = {@JoinColumn(name="ID_ACTOR")}
+    )
+    private List<Actor> secondaryActors=new ArrayList<>();
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            orphanRemoval = true,
+            mappedBy = "movie"
+    )
+    private List<Review> reviews=new ArrayList<>();
 
-    public Movie(long id, String titre, String genre) {
+
+    public Movie(Long id, String titre, String genre, String descriptions, Actor mainActor) {
+        this.id = id;
         this.titre = titre;
         this.genre = genre;
-        this.id = id;
+        this.descriptions = descriptions;
+        this.mainActor = mainActor;
     }
 
-    public Movie(long id, String titre, String genre, String description) {
+    public Movie(Long id, String titre, String genre) {
+        this.id = id;
         this.titre = titre;
         this.genre = genre;
-        this.id = id;
-        this.descriptions = description;
     }
 
-    public Movie() {}
+    public Movie() {
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getTitre() {
@@ -53,12 +69,44 @@ public class Movie {
         this.genre = genre;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getDescriptions() {
         return descriptions;
     }
 
     public void setDescriptions(String description) {
-        this.descriptions = description;
+        this.descriptions = descriptions;
     }
+
+    public Actor getMainActor() {
+        return mainActor;
+    }
+
+    public void setMainActor(Actor mainActor) {
+        this.mainActor = mainActor;
+    }
+
+    public List<Actor> getSecondaryActors() {
+        return secondaryActors;
+    }
+
+    public void addSecondaryActor(Actor actor){
+        this.secondaryActors.add(actor);
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void addReview(Review review){
+        this.reviews.add(review);
+    }
+
 }
