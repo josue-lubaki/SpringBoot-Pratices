@@ -1,8 +1,11 @@
 package com.mycompany.invoice.core.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Customer {
 
     @Id
