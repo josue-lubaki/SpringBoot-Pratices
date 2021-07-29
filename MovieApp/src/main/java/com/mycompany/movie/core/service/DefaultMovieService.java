@@ -38,11 +38,10 @@ public class DefaultMovieService implements MovieServiceInterface{
         if (optionalMovie.isEmpty()){
             throw new NoSuchElementException();
         }
-        Movie movie=optionalMovie.get();
-        //Initialize proxys
-        movie.getMainActor().getFirstName();
+        // on ne déproxifie pas, on met juste null à la relation inverse de Review vers Movie
+        Movie movie = optionalMovie.get();
+
         movie.getReviews().forEach(review -> {
-            review.getMark();
             review.setMovie(null);
         });
 

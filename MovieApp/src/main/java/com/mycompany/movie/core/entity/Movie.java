@@ -1,11 +1,14 @@
 package com.mycompany.movie.core.entity;
 
 
+import org.springframework.data.jpa.repository.EntityGraph;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NamedEntityGraph(name = "movie.actor-and-reviews", attributeNodes = {@NamedAttributeNode("reviews"), @NamedAttributeNode("mainActor")})
 public class Movie {
 
     @Id

@@ -31,6 +31,13 @@ public class MemoryMovieRepository implements MovieRepositoryInterface {
     }
 
     @Override
+    public Optional<Movie> findById(long id) {
+        return movies.stream().
+                filter(m -> m.getId()==id).
+                findFirst();
+    }
+
+    @Override
     public boolean existsById(Long aLong) {
         throw new UnsupportedOperationException();
     }
@@ -69,5 +76,6 @@ public class MemoryMovieRepository implements MovieRepositoryInterface {
     public void deleteAll() {
 
     }
+
 
 }
