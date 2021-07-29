@@ -6,6 +6,9 @@ import com.mycompany.invoice.core.service.InvoiceServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 @Service
 public class InvoiceServiceNumber implements InvoiceServiceInterface {
 
@@ -46,7 +49,15 @@ public class InvoiceServiceNumber implements InvoiceServiceInterface {
 
     @Override
     public Invoice getInvoiceByNumber(String number) {
-        return invoiceRepository.findById(number).orElseThrow();
+        Optional<Invoice> OptionalInvoice= invoiceRepository.findById(number);
+        if(OptionalInvoice.isEmpty()){
+            throw new NoSuchElementException();
+        }
+
+        Invoice invoice = OptionalInvoice.get();
+        // Initialize proxy
+        invoice.getCustomer().getName();
+        return invoice;
     }
 
 }
