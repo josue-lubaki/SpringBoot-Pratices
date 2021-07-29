@@ -1,6 +1,7 @@
 package com.mycompany.invoice.core.controller.keyboard;
 
 import com.mycompany.invoice.core.controller.InvoiceControllerInterface;
+import com.mycompany.invoice.core.entity.Customer;
 import com.mycompany.invoice.core.entity.Invoice;
 import com.mycompany.invoice.core.service.InvoiceServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,8 @@ public class InvoiceControllerKeyboard implements InvoiceControllerInterface {
 
         // instancier la facture et y inscrire le nom du client
         invoice = new Invoice();
-        invoice.setCustomerName(customerName);
+        Customer customer = new Customer(customerName);
+        invoice.setCustomer(customer);
 
         invoiceService.createInvoice(invoice);
         return null;
