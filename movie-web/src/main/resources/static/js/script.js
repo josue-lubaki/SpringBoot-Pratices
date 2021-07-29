@@ -2,20 +2,20 @@
 fetch('../movie')
     .then(res => res.json())
     .then(res => {
-        var movieListNode = document.getElementById('movie-list');
+        const movieListNode = document.getElementById('movie-list');
         movieListNode.innerHTML = "";
 
-        var table = document.createElement("table");
+        const table = document.createElement("table");
         table.setAttribute("border","1");
         movieListNode.appendChild(table);
 
         res.forEach(movie => {
 
-            var tr = document.createElement("tr");
+            let tr = document.createElement("tr");
             table.appendChild(tr);
 
-            var td = document.createElement("td");
-            var text = document.createTextNode(`${movie.id}`);
+            let td = document.createElement("td");
+            let text = document.createTextNode(`${movie.id}`);
             td.appendChild(text);
             tr.appendChild(td);
 
@@ -30,7 +30,7 @@ fetch('../movie')
             tr.appendChild(td);
 
             td = document.createElement("td");
-            var button = document.createElement("button");
+            let button = document.createElement("button");
             button.setAttribute("type","button");
             button.onclick = function() {
                 showDetail(`${movie.id}`);
@@ -49,11 +49,11 @@ function showDetail(movieNumber){
     fetch(movieNumber)
         .then(res => res.json())
         .then(res => {
-            var movieDetailNode = document.getElementById('movie-detail');
+            let movieDetailNode = document.getElementById('movie-detail');
             movieDetailNode.innerHTML = "";
 
-            var p = document.createElement("p");
-            var text = document.createTextNode(`Id: ${res.id}`);
+            let p = document.createElement("p");
+            let text = document.createTextNode(`Id: ${res.id}`);
             p.appendChild(text);
             movieDetailNode.appendChild(p);
 
@@ -69,6 +69,18 @@ function showDetail(movieNumber){
 
             p = document.createElement("p");
             text = document.createTextNode(`Description: ${res.descriptions}`);
+            p.appendChild(text);
+            movieDetailNode.appendChild(p);
+
+            p = document.createElement("p");
+            text = document.createTextNode(`Main actor: ${res.mainActor.firstName} ${res.mainActor.lastName}`);
+            p.appendChild(text);
+            movieDetailNode.appendChild(p);
+
+            p = document.createElement("p");
+            let sum = res.reviews.map((a) => a.mark).reduce((a, b) => a + b, 0);
+            let avg = (sum / res.reviews.length) || 0;
+            text = document.createTextNode(`Mark: ${avg}/5`);
             p.appendChild(text);
             movieDetailNode.appendChild(p);
 
