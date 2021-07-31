@@ -1,13 +1,11 @@
 package com.mycompany.invoice.core.service.number;
 
 import com.mycompany.invoice.core.entity.Invoice;
+import com.mycompany.invoice.core.repository.CustomerRepositoryInterface;
 import com.mycompany.invoice.core.repository.InvoiceRepositoryInterface;
 import com.mycompany.invoice.core.service.InvoiceServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 public class InvoiceServiceNumber implements InvoiceServiceInterface {
@@ -16,6 +14,9 @@ public class InvoiceServiceNumber implements InvoiceServiceInterface {
 
     @Autowired
     private InvoiceRepositoryInterface invoiceRepository;
+
+    @Autowired
+    private CustomerRepositoryInterface customerRepository;
 
     public InvoiceRepositoryInterface getInvoiceRepository() {
         return invoiceRepository;
@@ -30,6 +31,8 @@ public class InvoiceServiceNumber implements InvoiceServiceInterface {
      * @returns void
      * */
     public Invoice createInvoice(Invoice invoice){
+        // enregistrer au préalable le costumer
+        customerRepository.save(invoice.getCustomer());
         return invoiceRepository.save(invoice);
     }
 

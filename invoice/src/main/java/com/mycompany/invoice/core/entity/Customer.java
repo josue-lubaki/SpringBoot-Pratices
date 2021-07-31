@@ -9,7 +9,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false,length = 50, columnDefinition = "VARCHAR")
+    @Column(name = "NAME", nullable = false,length = 50, columnDefinition = "VARCHAR")
     private String name;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL,orphanRemoval = true,optional = false)

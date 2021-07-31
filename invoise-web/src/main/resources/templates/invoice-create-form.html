@@ -10,6 +10,17 @@
         <div th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"></div>
         <p>Order Number : <input type="text" th:field="*{orderNumber}"> </p>
         <div th:if="${#fields.hasErrors('orderNumber')}" th:errors="*{orderNumber}"></div>
+
+        <p>Street Name : <input type="text" th:field="*{streetName}"> </p>
+        <div th:if="${#fields.hasErrors('streetName')}" th:errors="*{streetName}"></div>
+        <p>Street Number : <input type="text" th:field="*{streetNumber}"> </p>
+        <div th:if="${#fields.hasErrors('streetNumber')}" th:errors="*{streetNumber}"></div>
+        <p>ZipCode : <input type="text" th:field="*{zipCode}"> </p>
+        <div th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></div>
+        <p>City : <input type="text" th:field="*{city}"> </p>
+        <div th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></div>
+        <p>Country : <input type="text" th:field="*{country}"> </p>
+        <div th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></div>
         <input type="submit" value="OK">
     </form>
 </body>
