@@ -6,6 +6,7 @@ import com.mycompany.invoice.core.repository.InvoiceRepositoryInterface;
 import com.mycompany.invoice.core.service.InvoiceServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class InvoiceServiceNumber implements InvoiceServiceInterface {
@@ -26,10 +27,12 @@ public class InvoiceServiceNumber implements InvoiceServiceInterface {
         this.invoiceRepository = invoiceRepository;
     }
 
+
     /**
      * Methode qui permet de créer une facture
      * @returns void
      * */
+    @Transactional
     public Invoice createInvoice(Invoice invoice){
         // enregistrer au préalable le costumer
         customerRepository.save(invoice.getCustomer());
