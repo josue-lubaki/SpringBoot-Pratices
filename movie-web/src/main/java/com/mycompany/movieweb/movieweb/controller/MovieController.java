@@ -1,5 +1,6 @@
 package com.mycompany.movieweb.movieweb.controller;
 
+import com.mycompany.movie.core.entity.Actor;
 import com.mycompany.movie.core.entity.Movie;
 import com.mycompany.movie.core.service.MovieServiceInterface;
 import com.mycompany.movieweb.movieweb.form.MovieForm;
@@ -43,7 +44,7 @@ public class MovieController {
 
 
     @GetMapping("/add-movie-form")
-    public String displayMovieForm(@Valid @ModelAttribute("movieToCreate") Movie movie){
+    public String displayMovieForm(@ModelAttribute("movieToCreate") MovieForm movie){
         return "add-movie-form";
     }
 
@@ -52,7 +53,7 @@ public class MovieController {
      * Methode qui permet de créer un film
      * */
     @PostMapping("/add")
-    public String addMovie(@Valid  @ModelAttribute("movieToCreate") MovieForm movieForm, BindingResult result){
+    public String addMovie(@Valid @ModelAttribute("movieToCreate") MovieForm movieForm, BindingResult result){
         if(result.hasErrors()){
             return "add-movie-form";
         }
@@ -61,6 +62,8 @@ public class MovieController {
         movie.setTitre(movieForm.getTitre());
         movie.setGenre(movieForm.getGenre());
         movie.setDescriptions(movieForm.getDescriptions());
+        Actor acteur = new Actor(movieForm.getFirstNameActor(), movieForm.getLastNameActor());
+        movie.setMainActor(acteur);
         movieService.registerMovie(movie);
         return "movie-added";
     }
